@@ -1,6 +1,6 @@
 <template>
 	<div class="toplist">
-		toplist
+		还没做呢...
 	</div>
 </template>
 

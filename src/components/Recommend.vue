@@ -95,9 +95,13 @@ export default {
 
 <style lang="scss" scoped>
 .musichall {
+  box-sizing: border-box;
+  width: 100%;
   margin-top: 50px;
-  .swiper-item {
-    width: 100vw;
+  .banner {
+    .swiper-item {
+      width: 100vw;
+    }
   }
   .options {
     display: flex;

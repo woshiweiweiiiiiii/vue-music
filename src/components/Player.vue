@@ -264,7 +264,8 @@ export default {
 </script>
 <style lang='scss' scoped>
 .container {
-  z-index: 301;
+  position: fixed;
+  z-index: 30;
   .normal-player {
     position: fixed;
     top: 0;

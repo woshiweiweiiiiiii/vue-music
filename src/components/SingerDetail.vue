@@ -76,6 +76,7 @@ export default {
   transform: translateX(100%);
 }
 .singerDetail {
+  z-index: 20;
   position: fixed;
   top: 0;
   height: 100%;
@@ -87,7 +88,7 @@ export default {
     left: 14px;
     font-size: 30px;
     color: #19be6b;
-    z-index: 9999;
+    z-index: 2000;
   }
 }
 </style>

@@ -65,6 +65,7 @@ const store = new Vuex.Store({
 	actions: {
 		selectPlay({ commit, state }, { list, index }) {
 			commit('setPlayList', list)
+			commit('setCurrentIndex', index+1)
 			commit('setCurrentIndex', index)
 			commit('setFullScreen', true)
 			commit('setPlayingState', true)
