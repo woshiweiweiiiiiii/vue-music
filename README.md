@@ -2,20 +2,15 @@
 
 > A Vue.js project
 
-## Build Setup
 
-``` bash
-# install dependencies
+
+## 注意事项（重要！！！）
+该项目接口使用网易云音乐API，请先确保API在本地运行之后再运行本项目！！！
+网易云API nodejs版地址[https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi](https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi)
+## 安装项目依赖
 npm install
 
-# serve with hot reload at localhost:8080
+## 本地运行项目
 npm run dev
 
-# build for production with minification
-npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
