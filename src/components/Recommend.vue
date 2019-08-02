@@ -20,7 +20,7 @@
       <span>
         <i class="iconfont icon-leimupinleifenleileibie2"></i>分类歌单
       </span>
-      <span>
+      <span @click="toMv">
         <i class="iconfont icon-shexiangji"></i>MV
       </span>
       <span>
@@ -87,6 +87,11 @@ export default {
       this.$router.push({
         path: `/toplist`
       });
+    },
+    toMv() {
+      this.$router.push({
+        path:`/mv`
+      })
     },
     ...mapMutations(["setRec"])
   }

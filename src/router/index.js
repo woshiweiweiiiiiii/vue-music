@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TabBar from '@/components/TabBar'
 import Recommend from '@/components/recommend'
 import TopList from '@/components/TopList'
 import Singer from '@/components/Singer'
 import SingerDetail from '@/components/SingerDetail'
+import ToplistDetail from '@/components/ToplistDetail'
 import Rec from '@/components/Rec'
+import Mv from '@/components/Mv'
 
 Vue.use(Router)
 
@@ -37,7 +38,18 @@ export default new Router({
 		},
 		{
 			path: '/toplist',
-			component: TopList
+			component: TopList,
+			children: [
+				{
+					path: ':id',
+					component: ToplistDetail
+				}
+			]
+		},
+		{
+			path: '/mv',
+			component: Mv
+			
 		}
 	],
 	linkActiveClass: 'my-active'

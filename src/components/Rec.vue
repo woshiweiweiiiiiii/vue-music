@@ -61,7 +61,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 .rec {
   position: fixed;
   top: 0;
@@ -69,15 +69,17 @@ export default {
   right: 0;
   bottom: 0;
   background-color: #fff;
-}
-.icon-back {
+  z-index: 20;
+  .icon-back {
     position: absolute;
     top: 0px;
     left: 14px;
     font-size: 30px;
     color: #19be6b;
-    z-index: 9999;
+    z-index: 2000;
   }
+}
+
 
 .slide-enter-active,
 .slide-leave-active {

@@ -81,6 +81,11 @@ export default {
   position: fixed;
   top: 0;
   z-index: 201;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 .top-title-fixed {
   height: 40px;

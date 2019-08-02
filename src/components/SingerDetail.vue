@@ -21,6 +21,8 @@ export default {
   created() {
     this.singer = this.$store.state.singer;
     this._getDetail();
+    console.log(this.$route.query.id);
+    
   },
   computed: {
     title() {

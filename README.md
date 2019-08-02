@@ -14,3 +14,11 @@ npm install
 npm run dev
 
 
+
+## 项目演示
+<img src="img/demo.gif" />
+
+
+## 未来考虑做的功能
+1.Mv
+2.歌曲分类

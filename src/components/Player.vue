@@ -119,7 +119,8 @@ export default {
       "playList",
       "currentSong",
       "playing",
-      "currentIndex"
+      "currentIndex",
+      "singer"
     ])
   },
 
@@ -230,10 +231,15 @@ export default {
         this.curSong = res.data.data[0].url;
       });
     },
+    // singer() {
+    //   this._getSongUrl().then(res => {
+    //     this.curSong = res.data.data[0].url;
+    //   });
+    // },
     curSong() {
       setTimeout(() => {
         this.$refs.audio.play();
-      }, 1000);
+      }, 100);
       // this._getLyric()
       //   .then(res => {
       //     if (this.currentLyric) {
