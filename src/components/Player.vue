@@ -307,6 +307,10 @@ export default {
         font-size: 20px;
         color: #31c27c;
         font-weight: 700;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .subtitle {
         line-height: 20px;

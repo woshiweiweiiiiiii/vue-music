@@ -23,6 +23,7 @@ export default {
   created() {
     this._getSingerList();
   },
+  
   methods: {
     _getSingerList() {
       axios.get("/api/toplist/artist").then(res => {

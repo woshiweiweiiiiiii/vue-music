@@ -46,7 +46,8 @@ export default {
       if (!this.listContainerScroll) {
         this.listContainerScroll = new BScroll(this.$refs.listContainer, {
           click: true,
-          probeType: 3
+          probeType: 3,
+          bounce:false
         });
         this.listContainerScroll.on("scroll", () => {
           if (this.$refs.songs.getBoundingClientRect().top <= 44) {
