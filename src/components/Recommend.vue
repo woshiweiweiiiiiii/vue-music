@@ -31,7 +31,7 @@
       <div class="songSheetRecomment" v-cloak>
         <h3>歌单推荐</h3>
         <ul class="list" v-if="bannerlist" ref="ul">
-          <li class="play-item" v-for="i in musicList" @click="selectItem(i)">
+          <li class="play-item" v-for="i in musicList" @click="selectItem(i)" :key="i.coverImgUrl">
             <img v-lazy="i.coverImgUrl" alt />
             <p>{{i.copywriter}}</p>
           </li>
@@ -62,8 +62,7 @@ export default {
     setTimeout(() => {
       this._getMusicList();
     }, 300);
-    
-    // 下面这个代码有点问题
+    //下面这个有严重bug  暂时没找到解决的方法
     // this.$nextTick(() => {
     //   if (!this.musichallScroll) {
     //     this.musichallScroll = new BScroll(this.$refs.musichall, {
@@ -77,9 +76,10 @@ export default {
     //     this.musichallScroll.on("pullingUp", () => {
     //       let time = this.musicList[this.musicList.length - 1].updateTime;
     //       axios
-    //         .get("/api/top/playlist/highquality?limit=21&before=" + time)
+    //         .get("/api/top/playlist/highquality?limit=12&before=" + time)
     //         .then(res => {
     //           this.musicList = this.musicList.concat(res.data.playlists);
+    //           this.musichallScroll.finishPullUp()
     //           this.musichallScroll.refresh();
     //         });
     //     });

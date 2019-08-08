@@ -15,7 +15,6 @@
 }
 
 .tabBar {
-  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
@@ -24,6 +23,7 @@
   height: 50px;
   background-color: #31c27c;
   justify-content: center;
+  z-index: 20;
   .tab-item {
     color: #fff;
     font-size: 20px;

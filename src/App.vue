@@ -4,7 +4,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-	<Player></Player>
+    <Player></Player>
   </div>
 </template>
 
@@ -19,8 +19,8 @@ export default {
   },
 
   components: {
-	TabBar,
-	Player
+    TabBar,
+    Player
   }
 };
 </script>

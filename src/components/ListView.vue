@@ -1,20 +1,18 @@
 <!--  -->
 <template>
   <div>
-
     <div class="top-title">{{title}}</div>
-
     <div class="top-title-fixed" v-show="show">
       <img :src="bgImage" />
     </div>
     <div class="container" ref="listContainer">
       <div class="listview">
         <div class="play-image">
-          <img :src="bgImage" alt />
+          <img :src="bgImage"/>
         </div>
         <div class="songs-container" ref="songs">
           <ul class="songs">
-            <li class="song" v-for="(item,index) in songs" @click="selectItem(item,index)">
+            <li class="song" v-for="(item,index) in songs" @click="selectItem(item,index)" :key="item.name+index">
               <h4>
                 <i class="iconfont icon-dianyingzhiye-gequbang"></i>
                 {{item.name}}

@@ -24,7 +24,8 @@ const store = new Vuex.Store({
 		playing: false,
 		fullScreen: false,
 		playList: [],
-		currentIndex: -1
+		currentIndex: -1,
+		toplist: {}
 	},
 	mutations: {
 		setSinger(state, singer) {
@@ -49,6 +50,9 @@ const store = new Vuex.Store({
 		setCurrentIndex(state, index) {
 			state.currentIndex = index
 
+		},
+		setToplist(state, list) {
+			state.toplist = list
 		}
 	},
 	getters: {

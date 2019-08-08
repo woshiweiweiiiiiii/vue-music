@@ -1,7 +1,7 @@
 <template>
   <div class="singer">
     <ul class="singer-list">
-      <li class="singer-item" v-for="singer in singerlist" @click="selectItem(singer)">
+      <li class="singer-item" v-for="singer in singerlist" @click="selectItem(singer)" :key="singer.name">
         <img v-lazy="singer.img1v1Url" />
         <div>
           <span>{{singer.name}}</span>
