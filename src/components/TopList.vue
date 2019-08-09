@@ -56,13 +56,16 @@ export default {
 
 <style lang="scss" scoped>
 .toplist {
-  margin-top: 50px;
+  position: absolute;
+  top:50px;
+  bottom: 0;
+  background: #333;
   ul {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     li {
-      background-color: #31c27c;
+      background-color: #555;
       border-radius: 10px;
       margin: 3px 0;
       box-sizing: border-box;
@@ -72,6 +75,7 @@ export default {
       overflow: hidden;
       text-align: center;
       line-height: 6vh;
+      color: #aaa;
       p {
         font-size: 2vh;
       }

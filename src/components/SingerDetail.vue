@@ -1,7 +1,7 @@
 <template>
   <transition name="slide">
     <div class="singerDetail">
-      <div class="iconfont icon-back" @click="toSingerList"></div>
+      <div class="iconfont icon-back" @click="back"></div>
       <ListView :title="title" :bgImage="bgImage" :songs="songs" @select="selectItem"></ListView>
     </div>
   </transition>
@@ -21,7 +21,6 @@ export default {
   created() {
     this.singer = this.$store.state.singer;
     this._getDetail();
-    
   },
   computed: {
     title() {
@@ -48,7 +47,7 @@ export default {
           this.songs = res.data.hotSongs;
         });
     },
-    toSingerList() {
+    back() {
       this.$router.back();
     },
     selectItem(item, index) {
@@ -70,7 +69,6 @@ export default {
 .slide-leave-active {
   transition: all 0.4s ease;
 }
-
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
@@ -82,7 +80,7 @@ export default {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #fff;
+  background-color: #333;
   .icon-back {
     position: absolute;
     top: 0px;

@@ -160,10 +160,10 @@ export default {
   position: absolute;
   top: 50px;
   left: 0;
-  bottom: 0;
   right: 0;
   // overflow: hidden;
   width: 100%;
+  background: #333;
   .banner {
     .swiper-item {
       width: 100vw;
@@ -210,6 +210,7 @@ export default {
         p {
           padding: 3px;
           font-size: 15px;
+          color: #aaa;
         }
       }
     }

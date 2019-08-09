@@ -14,6 +14,8 @@
 
 <script>
 import axios from "axios";
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -32,11 +34,12 @@ export default {
       });
     },
     selectItem(singer) {
-      this.$store.commit("setSinger", singer);
+      this.setSinger(singer);
       this.$router.push({
         path: `/singer/${singer.id}`
       });
-    }
+    },
+    ...mapMutations(["setSinger"])
   }
 };
 </script>
@@ -46,7 +49,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   margin-top: 50px;
-
+  background: #333;
   .singer-list {
     display: flex;
     flex-direction: column;
@@ -59,6 +62,7 @@ export default {
       margin: 5px 0;
       /* padding: 0 10px; */
       padding-left: 10px;
+      color: #fff;
       transition: all 0.5s linear;
       img {
         height: 49px;

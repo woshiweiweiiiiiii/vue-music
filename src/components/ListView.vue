@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>
+  <div class="container">
     <div class="top-title">{{title}}</div>
     <div class="top-title-fixed" v-show="show">
       <img :src="bgImage" />
@@ -45,7 +45,7 @@ export default {
         this.listContainerScroll = new BScroll(this.$refs.listContainer, {
           click: true,
           probeType: 3,
-          bounce:false
+          bounce: false
         });
         this.listContainerScroll.on("scroll", () => {
           if (this.$refs.songs.getBoundingClientRect().top <= 44) {
@@ -68,7 +68,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+.container{
+  background: #333;
+}
 .top-title {
   height: 44px;
   width: 100vw;
@@ -123,7 +125,7 @@ export default {
       padding: 4px 20px;
       font-size: 18px;
       border-bottom: 1px solid #ccc;
-      color: #000;
+      color: #fff;
       p {
         font-size: 12px;
         // margin-top: 5px;

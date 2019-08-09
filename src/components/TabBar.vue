@@ -21,7 +21,7 @@
   right: 0;
   display: flex;
   height: 50px;
-  background-color: #31c27c;
+  background-color: #555;
   justify-content: center;
   z-index: 20;
   .tab-item {

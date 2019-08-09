@@ -68,7 +68,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #333;
   z-index: 20;
   .icon-back {
     position: absolute;

@@ -20,27 +20,22 @@
                 <img class="image" :src="currentSong.al.picUrl" />
               </div>
             </div>
-            <!-- 歌词  未开发-->
+            <!-- 歌词 部分-->
+            <div class="playing-lyric-wrapper" v-if="currentLyric" ref="lyricList">
+              <ul>
+                <li
+                  ref="lyricLine"
+                  class="text"
+                  :class="{'current': currentLineNum === index}"
+                  v-for="(line,index) in currentLyric.lines"
+                  :key="line.txt+index"
+                >{{line.txt}}</li>
+              </ul>
+            </div>
+            <!-- 歌词部分 -->
           </div>
         </div>
         <div class="bottom">
-          <!-- <div class="operators">
-          <div class="icon i-left">
-            <i class="iconfont icon-icon-6"></i>
-          </div>
-          <div class="icon i-left">
-            <i @click="prev" class="iconfont icon-icon-4"></i>
-          </div>
-          <div class="icon i-center">
-            <i @click="togglePlaying" :class="playIcon" class="iconfont"></i>
-          </div>
-          <div class="icon i-right">
-            <i @click="next" class="iconfont icon-icon-3"></i>
-          </div>
-          <div class="icon i-right">
-            <i class="iconfont icon-icon-1"></i>
-          </div>
-          </div>-->
           <div class="operators">
             <div class="icon i-left">
               <i class="iconfont icon-iconfront-"></i>
@@ -102,6 +97,7 @@ export default {
     };
   },
 
+  created() {},
   components: {},
 
   computed: {
@@ -124,9 +120,27 @@ export default {
     ])
   },
 
-  // mounted: {},
-
+  mounted() {},
+  updated() {
+    this.$nextTick(() => {
+      this._initScroll();
+    });
+  },
   methods: {
+    _initScroll() {
+      if (!this.$refs.lyricList) {
+        // 确保dom已经就绪
+        return;
+      }
+      if (!this.lyricListScroll) {
+        this.lyricListScroll = new BScroll(this.$refs.lyricList, {
+          probeType: 3,
+          click: true
+        });
+      } else {
+        this.lyricListScroll.refresh();
+      }
+    },
     back() {
       this.setFullScreen(false);
     },
@@ -207,22 +221,22 @@ export default {
         params: { id: this.currentSong.id }
       });
       return result;
+    },
+    _getLyric: async function() {
+      var lyric = await axios.get("/api/lyric", {
+        params: { id: this.currentSong.id }
+      });
+      return lyric;
+    },
+    handlerLyric(lineNum, txt) {
+      this.currentLineNum = lineNum.lineNum;
+      if (this.currentLineNum > 1) {
+        let lineEl = this.$refs.lyricLine[this.currentLineNum - 1];
+        this.lyricListScroll && this.lyricListScroll.scrollToElement(lineEl, 800);
+      } else {
+        this.lyricListScroll && this.lyricListScroll.scrollTo(0, 0, 800);
+      }
     }
-    // _getLyric: async function() {
-    //   var lyric = await axios.get("/api/lyric", {
-    //     params: { id: this.currentSong.id }
-    //   });
-    //   return lyric;
-    // },
-    // handlerLyric(lineNum, txt) {
-    //   this.currentLineNum = lineNum.lineNum;
-    //   if (this.currentLineNum > 1) {
-    //     let lineEl = this.$refs.lyricLine[this.currentLineNum - 1];
-    //     this.$refs.lyricList.scrollToElement(lineEl, 1000);
-    //   } else {
-    //     this.$refs.lyricList.scrollTo(0, 0, 1000);
-    //   }
-    // }
   },
 
   watch: {
@@ -231,32 +245,28 @@ export default {
         this.curSong = res.data.data[0].url;
       });
     },
-    // singer() {
-    //   this._getSongUrl().then(res => {
-    //     this.curSong = res.data.data[0].url;
-    //   });
-    // },
+
     curSong() {
       setTimeout(() => {
         this.$refs.audio.play();
       }, 100);
-      // this._getLyric()
-      //   .then(res => {
-      //     if (this.currentLyric) {
-      //       this.currentLyric.stop();
-      //     }
-      //     this.currentLyric = new LyricParser(
-      //       res.data.lrc.lyric,
-      //       this.handlerLyric
-      //     );
-      //     if (this.playing) {
-      //       this.currentLyric.play();
-      //     }
-      //   })
-      //   .catch(() => {
-      //     this.currentLyric = null;
-      //     this.currentLineNum = 0;
-      //   });
+      this._getLyric()
+        .then(res => {
+          if (this.currentLyric) {
+            this.currentLyric.stop();
+          }
+          this.currentLyric = new LyricParser(
+            res.data.lrc.lyric,
+            this.handlerLyric
+          );
+          if (this.playing) {
+            this.currentLyric.play();
+          }
+        })
+        .catch(() => {
+          this.currentLyric = null;
+          this.currentLineNum = 0;
+        });
     },
     playing(newPlaying) {
       if (!this.songReady) return;
@@ -377,6 +387,15 @@ export default {
         margin: 20px auto 0 auto;
         overflow: hidden;
         text-align: center;
+        .text {
+          color: #eee;
+          font-size: 14px;
+          line-height: 5vh;
+        }
+        .current {
+          color: #31c27c;
+          font-size: 20px;
+        }
       }
     }
     .bottom {
@@ -408,7 +427,7 @@ export default {
     left: 0;
     right: 0;
     height: 60px;
-    background: #eee;
+    background: #888;
     color: #fff;
     line-height: 60px;
     font-size: 20px;

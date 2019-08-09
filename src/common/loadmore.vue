@@ -29,6 +29,7 @@ export default {
         text-align: center;
         height: 40px;
         line-height: 40px;
+        color: #aaa;
     }
 }
 </style>
