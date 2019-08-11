@@ -36,6 +36,15 @@
           </div>
         </div>
         <div class="bottom">
+          <!-- 进度条 -->
+          <div class="progress-wrapper">
+            <span class="time time-l">{{format(currentTime)}}</span>
+            <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar>
+            </div>
+            <span class="time time-r">{{format(songDuration)}}</span>
+          </div>
+          <!-- 进度条 -->
           <div class="operators">
             <div class="icon i-left">
               <i class="iconfont icon-iconfront-"></i>
@@ -84,6 +93,7 @@ import { mapGetters, mapMutations } from "vuex";
 import LyricParser from "lyric-parser";
 import BScroll from "better-scroll";
 import axios from "axios";
+import ProgressBar from "../common/ProgressBar.vue"
 
 export default {
   data() {
@@ -98,7 +108,9 @@ export default {
   },
 
   created() {},
-  components: {},
+  components: {
+    ProgressBar
+  },
 
   computed: {
     playIcon() {
@@ -198,16 +210,16 @@ export default {
       }
       return num;
     },
-    // onProgressBarChange(percent) {
-    //   const currentTime = this.songDuration * percent;
-    //   this.$refs.audio.currentTime = currentTime;
-    //   if (!this.playing) {
-    //     this.togglePlaying();
-    //   }
-    //   if (this.currentLyric) {
-    //     this.currentLyric.seek(currentTime * 1000);
-    //   }
-    // },
+    onProgressBarChange(percent) {
+      const currentTime = this.songDuration * percent;
+      this.$refs.audio.currentTime = currentTime;
+      if (!this.playing) {
+        this.togglePlaying();
+      }
+      if (this.currentLyric) {
+        this.currentLyric.seek(currentTime * 1000);
+      }
+    },
     ...mapMutations(["setFullScreen", "setPlayingState", "setCurrentIndex"]),
     togglePlaying() {
       if (!this.songReady) return;
@@ -232,7 +244,8 @@ export default {
       this.currentLineNum = lineNum.lineNum;
       if (this.currentLineNum > 1) {
         let lineEl = this.$refs.lyricLine[this.currentLineNum - 1];
-        this.lyricListScroll && this.lyricListScroll.scrollToElement(lineEl, 800);
+        this.lyricListScroll &&
+          this.lyricListScroll.scrollToElement(lineEl, 800);
       } else {
         this.lyricListScroll && this.lyricListScroll.scrollTo(0, 0, 800);
       }
@@ -391,18 +404,19 @@ export default {
           color: #eee;
           font-size: 14px;
           line-height: 5vh;
+          transition: all 0.5s ease;
         }
         .current {
           color: #31c27c;
-          font-size: 20px;
+          font-size: 18px;
         }
       }
     }
     .bottom {
       position: absolute;
-      bottom: 50px;
+      bottom: 40px;
       width: 100%;
-      height: 50px;
+      height: 100px;
       .operators {
         display: flex;
         .icon {
@@ -417,6 +431,29 @@ export default {
         }
         .i-center i {
           font-size: 46px;
+        }
+      }
+      .progress-wrapper {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin: 0px auto;
+        padding: 10px 0;
+        .time {
+          color: #ccc;
+          font-size: 8px;
+          flex: 0 0 30px;
+          line-height: 30px;
+          width: 30px;
+        }
+        .time-l {
+          text-align: left;
+        }
+        .time-r {
+          text-align: right;
+        }
+        .progress-bar-wrapper{
+          flex: 1;
         }
       }
     }
