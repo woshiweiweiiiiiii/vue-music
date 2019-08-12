@@ -36,6 +36,10 @@ export default new Router({
 				}
 			]
 		},
+		// {
+		// 	path: '/singer/:id',
+		// 	component: SingerDetail
+		// },
 		{
 			path: '/toplist',
 			component: TopList,

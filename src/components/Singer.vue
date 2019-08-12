@@ -1,13 +1,20 @@
 <template>
   <div class="singer">
     <ul class="singer-list">
-      <li class="singer-item" v-for="singer in singerlist" @click="selectItem(singer)" :key="singer.name">
+      <li
+        class="singer-item"
+        v-for="singer in singerlist"
+        @click="selectItem(singer)"
+        :key="singer.name"
+      >
         <img v-lazy="singer.img1v1Url" />
         <div>
           <span>{{singer.name}}</span>
         </div>
       </li>
-      <router-view></router-view>
+      <transition name="slide">
+        <router-view></router-view>
+      </transition>
     </ul>
   </div>
 </template>
@@ -25,7 +32,7 @@ export default {
   created() {
     this._getSingerList();
   },
-  
+
   methods: {
     _getSingerList() {
       axios.get("/api/toplist/artist").then(res => {
@@ -45,6 +52,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.4s ease;
+}
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}
 .singer {
   box-sizing: border-box;
   width: 100%;
@@ -78,7 +94,6 @@ export default {
         border-bottom: 1px solid #ccc;
       }
     }
-    
   }
 }
 </style>

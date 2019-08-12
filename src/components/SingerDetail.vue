@@ -1,10 +1,8 @@
 <template>
-  <transition name="slide">
-    <div class="singerDetail">
-      <div class="iconfont icon-back" @click="back"></div>
-      <ListView :title="title" :bgImage="bgImage" :songs="songs" @select="selectItem"></ListView>
-    </div>
-  </transition>
+  <div class="singerDetail">
+    <div class="iconfont icon-back" @click="back"></div>
+    <ListView :title="title" :bgImage="bgImage" :songs="songs" @select="selectItem"></ListView>
+  </div>
 </template>
 
 <script>
@@ -65,15 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.4s ease;
-}
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateX(100%);
-}
+
 .singerDetail {
   z-index: 20;
   position: fixed;
