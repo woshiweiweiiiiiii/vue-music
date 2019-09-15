@@ -229,13 +229,13 @@ export default {
       }
     },
     _getSongUrl: async function() {
-      var result = await axios.get("/api/song/url", {
+      var result = await axios.get("http://94.191.55.232:3000/song/url", {
         params: { id: this.currentSong.id }
       });
       return result;
     },
     _getLyric: async function() {
-      var lyric = await axios.get("/api/lyric", {
+      var lyric = await axios.get("http://94.191.55.232:3000/lyric", {
         params: { id: this.currentSong.id }
       });
       return lyric;

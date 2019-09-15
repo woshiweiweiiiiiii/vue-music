@@ -21,7 +21,7 @@ export default {
   },
   created() {
     axios
-      .get("/api/top/list", {
+      .get("http://94.191.55.232:3000/top/list", {
         params: {
           idx: this.$route.params.id
         }

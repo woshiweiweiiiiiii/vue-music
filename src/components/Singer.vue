@@ -35,9 +35,8 @@ export default {
 
   methods: {
     _getSingerList() {
-      axios.get("/api/toplist/artist").then(res => {
+      axios.get("http://94.191.55.232:3000/toplist/artist").then(res => {
         this.singerlist = res.data.list.artists;
-        // console.log(this.singerlist)
       });
     },
     selectItem(singer) {

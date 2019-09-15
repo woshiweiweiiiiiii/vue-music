@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     _getBanner() {
-      axios.get("/api/banner").then(res => {
+      axios.get("http://94.191.55.232:3000/banner").then(res => {
         let banners = res.data.banners;
         if (banners.length > 6) {
           banners = banners.slice(0, 6);
@@ -113,7 +113,7 @@ export default {
       });
     },
     _getMusicList() {
-      axios.get("/api/top/playlist/highquality?limit=12").then(res => {
+      axios.get("http://94.191.55.232:3000/top/playlist/highquality?limit=12").then(res => {
         this.musicList = [];
         this.musicList = this.musicList.concat(res.data.playlists);
       });
@@ -142,7 +142,7 @@ export default {
     loadmore() {
       let time = this.musicList[this.musicList.length - 1].updateTime;
       axios
-        .get("/api/top/playlist/highquality?limit=12&before=" + time)
+        .get("http://94.191.55.232:3000/top/playlist/highquality?limit=12&before=" + time)
         .then(res => {
           this.musicList = this.musicList.concat(res.data.playlists);
         });

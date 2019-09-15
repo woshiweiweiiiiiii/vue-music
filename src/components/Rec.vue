@@ -43,7 +43,7 @@ export default {
         return;
       }
       axios
-        .get("/api/playlist/detail", {
+        .get("http://94.191.55.232:3000/playlist/detail", {
           params: {
             id: this.rec.id
           }

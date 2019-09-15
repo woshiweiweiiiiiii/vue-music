@@ -36,7 +36,7 @@ export default {
         return;
       }
       axios
-        .get("/api/artists", {
+        .get("http://94.191.55.232:3000/artists", {
           params: {
             id: this.singer.id
           }
